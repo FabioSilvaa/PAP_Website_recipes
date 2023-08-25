@@ -1,0 +1,98 @@
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.selected-star {
+  color: yellow;
+}
+
+footer {
+  width: 100%;
+  height: 100px; /* Change the height to your desired size */
+  clear: both;
+}
+
+@media print {
+  .print-preview {
+    width: 500px; /* Set the width of the print area */
+    height: 500px; /* Set the height of the print area */
+    margin: 0; /* Remove any margins */
+    padding: 0; /* Remove any padding */
+  }
+
+  /* Hide the print button */
+  button {
+    display: none;
+  }
+
+  /* Format the recipe */
+  h1 {
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+  /* etc. */
+}
+
+.rating {
+  font-size: 30px;
+  direction: rtl; /* Set text direction to right-to-left */
+}
+
+.star {
+  color: #ddd;
+  cursor: pointer;
+  display: inline-block; /* Add this line to make stars display inline */
+}
+
+.star:hover,
+.star:hover ~ .star {
+  color: #ffcc00;
+}
+
+.card-video-top {
+  width: 10;
+  height: 100;
+  border-radius: 5px;
+  background-repeat: no-repeat;
+}
+
+.card-img-top {
+  width: 10;
+  height: 100;
+  border-radius: 5px;
+  background-repeat: no-repeat;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 80%; /* Adjust this value to your desired width */
+  margin: 0 auto; /* Center the container horizontally */
+  gap: 60px; /* Add a space of 20px between flex items */
+}
+
+
+.flex-container > div {
+  width: calc(30.25% - 10px); /* or any other width that suits your design */
+  margin-bottom: 20px; /* or any other margin that suits your design */
+}
+
+.card {
+  width: 350px;
+  height: 460px;
+  margin: 25px;
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
+  transition: 0.3s;
+}
+
+#jhon {
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.4);
+  border-radius: 5%;
+}

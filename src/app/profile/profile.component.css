@@ -1,0 +1,118 @@
+
+
+
+.btn-close{
+    color: red;
+
+}
+
+.row {margin: 0 -5px;}
+
+
+
+
+#filters {
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-right: 10px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+
+  .dropdown {
+    display: inline-block;
+    position: relative;
+  }
+
+
+
+
+  @media print {
+
+    .print-preview {
+      width: 500px; /* Set the width of the print area */
+      height: 500px; /* Set the height of the print area */
+      margin: 0; /* Remove any margins */
+      padding: 0; /* Remove any padding */
+    }
+
+    /* Hide the print button */
+    button {
+      display: none;
+    }
+
+    /* Format the recipe */
+    h1 {
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    /* etc. */
+  }
+
+
+
+
+
+
+
+
+
+
+  .line-2 {
+    border-top: 1px solid black;
+  }
+
+
+
+.card{
+
+
+  width: 300px;
+  height: 400px;
+  margin: 25px;
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7);
+  transition: 0.3s;
+
+}
+
+.card-img-top{
+  width:40;
+  height:500;
+   border-radius: 5px;
+   background-repeat: no-repeat;
+
+ }
+
+  .flex-container {
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80%; /* Adjust this value to your desired width */
+    margin: 0 auto; /* Center the container horizontally */
+  }
+
+
+
+.flex-container > div {
+
+  width: calc(30.25% - 10px); /* or any other width that suits your design */
+  margin-bottom: 20px; /* or any other margin that suits your design */
+}
+
+
+
+  #jhon{
+    box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.4);
+    border-radius: 5%;
+    margin-bottom: 10px;
+  }
+
+
+

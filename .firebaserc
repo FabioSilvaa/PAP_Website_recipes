@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "mypap-4027f"
+  },
+  "targets": {
+    "mypap-4027f": {
+      "hosting": {
+        "my-pap-angular": [
+          "mypap-4027f"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<header class="p-3 dark" style="background-color: #000814">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <button class="btn dark" routerLink="/homepage" style="color: white; text-decoration: none">
+          Recipes</button>
+        <button class="btn dark" (click)="Showrecipes()" style="color: white; margin-left: 30px;">All Recipes</button>
+        <a class="btn dark" (click)="Showrep()" style="color: white; margin-left: 30px;">Reports</a>
+        <a class="btn dark" (click)="Showbwords()" style="color: white; margin-left: 30px;">Blocked Words</a>
+        <a class="btn dark" (click)="Showcom()" style="color: white; margin-left: 30px;">Comments</a>
+        <a class="btn dark" (click)="Showalltables()" style="color: white; margin-left: 30px;">All tables</a>
+
+      </ul>
+
+      <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+        aria-labelledby="offcanvasWithBothOptionsLabel"></div>
+
+      <div class="dropdown text-end">
+        <ul class="dropdown-menu text-small">
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div id="allrecipes">
+        <div class="col-xs-12">
+          <div class="table-responsive" data-pattern="priority-columns">
+            <br />
+            <br />
+
+
+            <h1>All recipes</h1>
+            <input type="text" [(ngModel)]="searchValue" style="margin-right: 10px;" placeholder="User Name"
+              (ngModelChange)="filterTodos()" />
+
+            <input type="text" [(ngModel)]="searchNameValue" placeholder="Name of Recipe"
+              (ngModelChange)="filterTodos()" />
+
+
+            <br>
+            <br>
+            <table summary="This table shows how to create responsive tables using RWD-Table-Patterns' functionality"
+              class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Users</th>
+                  <th data-priority="1">Name of recipe</th>
+                  <th data-priority="2">time</th>
+                  <th data-priority="3">type</th>
+                  <th data-priority="4">desc</th>
+                  <th data-priority="5">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let todo of pagedTodos">
+                  <td>
+                    <span *ngFor="let profiles of profile">
+                      <ng-container *ngIf="profiles.profilesemail === todo.recipeuser">
+                        {{ profiles.profilesname }}
+                      </ng-container>
+                    </span>
+                  </td>
+                  <td>{{ todo.recipename }}</td>
+                  <td>{{ todo.recipetemp }}</td>
+                  <td>{{ todo.recipetype }}</td>
+                  <td>{{ todo.recipedesc }}</td>
+                  <td>
+                    <button class="btn btn-danger" (click)="mostra(todo)">
+                      Delete Recipe
+                    </button>
+
+                    <button style="margin-left: 30px" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                      data-bs-target="#exampleModal22" (click)="review(todo)">
+                      Review
+                    </button>
+
+                    <button style="margin-left: 30px" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                      data-bs-target="#exampleModal222" (click)="showvideo(todo)">
+                      Show video
+                    </button>
+
+                    <div class="modal fade" id="exampleModal222" tabindex="-1" aria-labelledby="exampleModal222Label"
+                      aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModal222Label">
+                              Preview
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+
+                          <div class="bodyofcontainer">
+                            <div class="modal-body">
+                              <div *ngIf="selectedTodo">
+                                <ng-container *ngIf="selectedTodo.recipevideo; else noVideo">
+                                  <iframe preload="auto" class="card-video-top" height="308" width="475" [src]="
+                                      getEmbedUrl(
+                                        getVideoId(selectedTodo.recipevideo)
+                                      )
+                                    " allowfullscreen></iframe>
+                                </ng-container>
+                                <ng-template #noVideo>
+                                  <p>This recipe doesn't have a video.</p>
+                                </ng-template>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="modal-body"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal22" tabindex="-1" aria-labelledby="exampleModal22Label"
+                      aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModal22Label">
+                              Preview
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+
+                          <div class="bodyofcontainer">
+                            <div class="modal-body">
+                              <div *ngIf="selectedTodo">
+                                <img width="460" height="300" src="{{ selectedTodo.recipeurl }}" alt="" />
+                                <p>
+                                  This is the recipe name :
+                                  {{ selectedTodo.recipename }}
+                                </p>
+                                <p>
+                                  This is the recipe temp :
+                                  {{ selectedTodo.recipetemp }}
+                                </p>
+                                <p>
+                                  This is the recipe type :
+                                  {{ selectedTodo.recipetype }}
+                                </p>
+                                <p>
+                                  This is the recipe description :
+                                  {{ selectedTodo.recipedesc }}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-body"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="pagination">
+              <ul>
+                <a class="page-link" [ngClass]="{ disabled: currentPage === totalPages }"
+                  (click)="currentPage = currentPage + 1">Next</a>
+              </ul>
+              <ul>
+                <a class="page-link" *ngIf="currentPage > 1" (click)="currentPage = currentPage - 1">Last</a>
+              </ul>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+        <!--end of .table-responsive-->
+
+        <br >
+<br>
+        <div id="rep">
+          <br>
+          <br>
+          <h1>Reports</h1>
+
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Users</th>
+                <th data-priority="1">Name of recipe</th>
+                <th data-priority="2">time</th>
+                <th data-priority="3">type</th>
+                <th data-priority="4">desc</th>
+                <th data-priority="5">Report Reason</th>
+                <th data-priority="6">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let report of Report">
+                <td>
+                  <span *ngFor="let profile of profile">
+                    <ng-container *ngIf="profile.profilesemail === report.recipeuser">
+                      {{ profile.profilesname }}
+                    </ng-container>
+                  </span>
+                </td>
+                <td>{{ report.recipename }}</td>
+                <td>{{ report.recipetemp }}</td>
+                <td>{{ report.recipetype }}</td>
+                <td>{{ report.recipedesc }}</td>
+                <td>{{ report.recipereportreason }}</td>
+                <td>
+
+                  <button class="btn btn-danger" (click)="mostra1(report)">
+                    Delete Report
+                  </button>
+
+                  <button style="margin-left: 30px" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal22" (click)="review(report)">
+                    Review
+                  </button>
+
+                  <button style="margin-left: 30px" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal222" (click)="showvideo(report)">
+                    Show video
+                  </button>
+
+                  <button style="margin-left: 30px" type="button" class="btn btn-primary" (click)="Find(report)">
+                    Find
+                  </button>
+
+                  <div class="modal fade" id="exampleModal222" tabindex="-1" aria-labelledby="exampleModal222Label"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModal222Label">
+                            Preview
+                          </h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="bodyofcontainer">
+                          <div class="modal-body">
+                            <div *ngIf="selectedTodo">
+                              <ng-container *ngIf="selectedTodo.recipevideo; else noVideo">
+                                <iframe preload="auto" class="card-video-top" height="308" width="475" [src]="
+                                    getEmbedUrl(
+                                      getVideoId(selectedTodo.recipevideo)
+                                    )
+                                  " allowfullscreen></iframe>
+                              </ng-container>
+                              <ng-template #noVideo>
+                                <p>This recipe doesn't have a video.</p>
+                              </ng-template>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="modal-body"></div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal223" tabindex="-1" aria-labelledby="exampleModal223Label"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModal223Label">
+                            Preview
+                          </h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="bodyofcontainer">
+                          <div class="modal-body">
+                            <div *ngIf="selectedReport">
+                              <img width="460" height="300" src="{{ selectedReport.recipeurl }}" alt="" />
+                              <p>
+                                This is the recipe name :
+                                {{ selectedReport.recipename }}
+                              </p>
+                              <p>
+                                This is the recipe temp :
+                                {{ selectedReport.recipetemp }}
+                              </p>
+                              <p>
+                                This is the recipe type :
+                                {{ selectedReport.recipetype }}
+                              </p>
+                              <p>
+                                This is the recipe description :
+                                {{ selectedReport.recipedesc }}
+                              </p>
+
+
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-body"></div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+    </div>
+
+<br>
+<br>
+    <div id="bw">
+      <h1>Blocked Words</h1>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Add a Word to block in Comments"
+          [(ngModel)]="blockedwordss" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" (click)="block()" type="button">Block Word</button>
+        </div>
+      </div>
+
+
+
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th data-priority="1">Words</th>
+            <th data-priority="2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let word of words">
+
+            <td>{{word.blockedwords}}</td>
+            <td><button class="btn btn-danger" (click)="deleteword(word.blockedwords)">Delete Word</button></td>
+
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <br>
+    <br>
+
+
+    <div id="comment">
+      <h1>Comments</h1>
+
+      <br>
+
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th data-priority="1">Comment User</th>
+            <th data-priority="1">CommentText</th>
+            <th data-priority="2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let comment of comments">
+            <td>{{comment.commentuser}}</td>
+            <td>{{comment.commentText}}</td>
+            <td><button (click)="deleteComment(comment.commentText)">Delete</button></td>
+
+
+          </tr>
+        </tbody>
+      </table>
+
+
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+/** {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }*/
+
+/* body {
+    margin: 0;
+    padding: 0;
+  background: linear-gradient(120deg, #2980b9, #8e44ad);*/
+
+/* background-image: url(images\10-receitas-de-cafe-da-manha-saudavel.png);
+   background-repeat: no-repeat ;
+   background-size:  cover;
+   background-position: center;
+  
+    height: 100vh;
+  }*/
+
+/*.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
+   
+  }*/
+
+/*.center h1 {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid silver;
+  }*/
+
+
+/*.ada{
+    padding-left: 30rem;
+    padding-right: 30rem;
+    text-align: center;
+    color: black;
+   
+  }*/
+
+
+
+  input {
+    width: 100%;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border: 2px solid black;
+    outline: none;
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:  'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url(images\10-receitas-de-cafe-da-manha-saudavel.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background: rgba(223, 222, 222, 0.767);
+    border-radius: 10px;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
+}
+
+.center h1 {
+    text-align: center;
+    padding: 20px 0;
+    border-bottom: 1px solid silver;
+}
+
+.center form {
+    padding: 0 40px;
+    box-sizing: border-box;
+}
